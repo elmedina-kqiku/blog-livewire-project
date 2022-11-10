@@ -37,9 +37,9 @@
                             <x-icons.dashboard class="w-6 h-6"/>
                             <a href="">Dashboard</a>
                         </li>
-                        <li class="text-blue-500 flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
+                        <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
                             <x-icons.categories class="w-6 h-6"/>
-                            <a href="">Categories</a>
+                            <a href="{{route('categories.index')}}">Categories</a>
                         </li>
 
                         <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
