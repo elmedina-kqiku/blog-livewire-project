@@ -5,10 +5,11 @@
             CREATE
         </a>
     </div>
-    <table class="w-2/3 bg-white border-1 border-gray-300" id="dataTable">
+    <table class="w-full bg-white border-1 border-gray-300 " id="dataTable">
         <thead>
         <tr class="border-b">
             <th class="text-left p-3 text-sm text-gray-500">Name</th>
+            <th class="text-left p-3 text-sm text-gray-500">Created At</th>
             <th class="text-left p-3 text-sm text-gray-500">Edit</th>
             <th class="text-left p-3 text-sm text-gray-500">Delete</th>
         </tr>
@@ -16,11 +17,13 @@
 
         <tbody>
         @foreach($categories as $category)
-            <tr class="border-b">
+            <tr class="border-b ">
                 <td class="p-3 text-sm text-gray-500">{{$category->name}}</td>
+                <td class="p-3 text-sm text-gray-500">{{$category->created_at ? $category->created_at->diffForHumans() : 'No Date'}}</td>
                 <td class="p-3 text-sm text-white">
                     <a type="button" href="{{ route('categories.edit', $category) }}" class="bg-blue-200 rounded rounded-md py-1 px-2">
-                        Edit</a>
+                        Edit
+                    </a>
                 </td>
                 <td class="p-3 text-sm text-white">
                     <button class="bg-red-200 rounded rounded-md py-1 px-2"
@@ -28,7 +31,6 @@
                         Delete
                     </button>
                 </td>
-
             </tr>
         @endforeach
         </tbody>

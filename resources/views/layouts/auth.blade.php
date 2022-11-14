@@ -33,18 +33,18 @@
                         <p class="text-base font-normal tracking-wider text-black">{{ auth()->user()->name }}</p>
                         <p class="text-xs font-normal text-gray-500">{{ auth()->user()->email }}</p></div>
                     <ul class="pt-9 flex flex-col h-full">
-                        <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider">
+                        <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider">
                             <x-icons.dashboard class="w-6 h-6"/>
                             <a href="">Dashboard</a>
                         </li>
-                        <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
+                        <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider mt-6">
                             <x-icons.categories class="w-6 h-6"/>
                             <a href="{{route('categories.index')}}">Categories</a>
                         </li>
 
-                        <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
+                        <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider mt-6">
                             <x-icons.post class="w-6 h-6"/>
-                            <a href="">Posts</a>
+                            <a href="{{route('posts.index')}}">Posts</a>
                         </li>
                     </ul>
                 </div>
@@ -70,12 +70,13 @@
                         </div>
                     </label>
                 </form>
+
                 <div class="flex flex-col space-y-2 md:flex-row md:space-x-9 md:space-y-0">
                     <div class="bg-white rounded-full p-1">
                         <!-- width po rritet kur bohet zoom-->
                     <x-icons.notification class="h-full w-full"/>
                     </div>
-                    <a href="#"
+                    <a href="{{route('posts.create')}}"
                        class="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-auto px-6 py-2 text-center text-sm font-normal tracking-wider">CREATE
                         POST
                     </a>

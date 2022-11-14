@@ -21,12 +21,6 @@ class Index extends Component
         $this->getCategories();
     }
 
-
-    public function render()
-    {
-        return view('livewire.categories.index')->layout('layouts.auth');
-    }
-
     public function getCategories()
     {
         $this->categories = Category::all();
@@ -43,6 +37,11 @@ class Index extends Component
     {
         $this->category = $category;
         $this->open = true;
+    }
+
+    public function render()
+    {
+        return view('livewire.categories.index')->layout('layouts.auth');
     }
 }
 
