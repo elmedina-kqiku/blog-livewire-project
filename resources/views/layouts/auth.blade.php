@@ -7,8 +7,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -35,16 +33,16 @@
                     <ul class="pt-9 flex flex-col h-full">
                         <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider">
                             <x-icons.dashboard class="w-6 h-6"/>
-                            <a href="">Dashboard</a>
+                            <x-nav-link href="">Dashboard</x-nav-link>
                         </li>
                         <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider mt-6">
                             <x-icons.categories class="w-6 h-6"/>
-                            <a href="{{route('categories.index')}}">Categories</a>
+                            <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')" >Categories</x-nav-link>
                         </li>
 
                         <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider mt-6">
                             <x-icons.post class="w-6 h-6"/>
-                            <a href="{{route('posts.index')}}">Posts</a>
+                            <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.*')">Posts</x-nav-link>
                         </li>
                     </ul>
                 </div>
