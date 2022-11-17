@@ -10,8 +10,9 @@ class Edit extends PostComponent
     public function mount(Post $post)
     {
         $this->form = $post;
-        $this->categories = $post->categories()->get();
+        $this->getCategories();
+        $this->form['categories'] = $post->categories()->get(['category_id', 'name'])->toArray();
+
+
     }
-
-
 }

@@ -3,29 +3,38 @@
 namespace App\Http\Livewire\Posts;
 
 use App\Models\Category;
+use App\Traits\FileManager;
+use App\Traits\WithCustomFileUploads;
+use Illuminate\Support\Str;
 use Livewire\Component;
-
 class PostComponent extends Component
 {
+    use WithCustomFileUploads;
+    use FileManager;
+
     public $form = [
         'title' => null,
         'body' => null,
         'categories' => []
     ];
     public $image;
-    public $categories = [];
+    public $categories = [
+    ];
 
     protected $rules = [
         'form.title' => 'required|string|min:3|max:255',
         'form.body' => 'required|string',
         'form.image' => 'nullable|string',
-        'form.categories' => 'required|exists:categories,id'
     ];
 
-
-    public function  getCategories()
+    public function updatedImage($value)
     {
-        $this->categories = Category::query()->get();
+        $this->form['image_url'] = $value->temporaryUrl();
+    }
+
+    public function getCategories()
+    {
+        $this->categories = Category::query()->orderBy('name')->get()->toArray();
     }
     public function render()
     {

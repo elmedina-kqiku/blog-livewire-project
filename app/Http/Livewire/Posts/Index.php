@@ -9,6 +9,9 @@ class Index extends Component
 {
     public $posts;
     public $post;
+    protected $appends = [
+        'image_url',
+    ];
 
     public function mount()
     {
@@ -17,7 +20,7 @@ class Index extends Component
 
     public function getPosts()
     {
-        $this->posts = Post::all();
+        $this->posts = Post::query()->where('user_id', auth()->user()->id)->get();
     }
 
     public function render()

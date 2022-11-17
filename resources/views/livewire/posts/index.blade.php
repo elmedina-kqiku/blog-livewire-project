@@ -1,4 +1,4 @@
-<div>
+<div class="py-10">
     {{-- Do your work, then step back. --}}
 
     <table class="w-full">
@@ -15,9 +15,19 @@
         <tbody class="bg-white">
         @foreach($posts as $post)
             <tr class="ml-6">
-                <td class="p-3 text-sm text-gray-900 font-normal flex flex-row">
-                    <img alt="" class="w-16 h-10"/>
-                    <p class="ml-2">{{$post->title}}</p>
+                <td class="p-3 text-sm text-gray-900 font-normal flex flex-row h-20">
+                    <a href="{{ route('posts.show', $post) }}" class="flex flex-row items-center">
+                        @if($post->image)
+                            <div class="w-20 h-full">
+                                <img src="{{asset($post->image_url)}}" class="w-20 h-full "/>
+                            </div>
+                        @else
+                            <div class="bg-gray-300 w-20 h-full">
+
+                            </div>
+                        @endif
+                        <p class="ml-2">{{$post->title}}</p>
+                    </a>
                 </td>
                 {{--            <td class="p-3 text-xs text-gray-500">{{$post->comments}}</td>--}}
                 <td class="p-3 text-xs text-gray-500">
@@ -26,9 +36,7 @@
                     @endforeach
                 </td>
                 <td class="p-3 text-xs text-gray-500">{{$post->created_at->diffForHumans()}}</td>
-                <td class="p-3 text-xs text-gray-500 flex flex-row">
-                    <p>{{$post->updated_at->diffForHumans()}}</p>
-                </td>
+                <td class="p-3 text-xs text-gray-500">{{$post->updated_at->diffForHumans()}}</td>
                 <td>
                     <x-dropdown>
                         <x:slot name="trigger">
@@ -49,24 +57,6 @@
                         </x:slot>
                     </x-dropdown>
                 </td>
-                {{--                <button  class="w-4 h-4">--}}
-                {{--                    <img src="@/assets/images/threedots_vertical.svg" alt="" class=""/>--}}
-                {{--                </button>--}}
-
-                {{--                <div v-if="detailsAreVisible" class="bg-white border border-md ">--}}
-                {{--                    <ul>--}}
-                {{--                        <li class="flex flex-row hover:bg-gray-100 p-2">--}}
-                {{--                            <img src="@/assets/images/pen_icon.svg" class="w-4 h-4"/>--}}
-                {{--                            <x-icons.pen />--}}
-                {{--                            <p class="ml-3">Edit Post</p>--}}
-                {{--                        </li>--}}
-                {{--                        <li class="flex flex-row hover:bg-gray-100 p-2">--}}
-                {{--                            <img src="@/assets/images/delete_icon.svg" class="w-4 h-4"/>--}}
-                {{--                            <x-icons.delete />--}}
-                {{--                            <p class="ml-3">Delete Post</p>--}}
-                {{--                        </li>--}}
-                {{--                    </ul>--}}
-                {{--                </div>--}}
             </tr>
         @endforeach
         </tbody>
