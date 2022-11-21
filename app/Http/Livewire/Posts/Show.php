@@ -5,9 +5,12 @@ namespace App\Http\Livewire\Posts;
 use App\Models\Category;
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Show extends Component
 {
+    use WithPagination;
+
     public $post;
     public $categories;
 
@@ -19,7 +22,7 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.posts.show')->layout('layouts.auth');
+        return view('livewire.posts.show', ['comments' => $this->post->comments()->latest()->paginate(2)])->layout('layouts.auth');
     }
 
     public function getCategories()
