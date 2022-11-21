@@ -14,5 +14,6 @@ class Create extends CategoryComponent
         $category = Category::create($data);
 
         return redirect()->route('categories.index');
+
     }
 }

@@ -3,45 +3,25 @@
 namespace App\Http\Livewire\Categories;
 
 use App\Models\Category;
+use App\Models\Post;
 use Livewire\Component;
 
 class Index extends Component
 {
 
-    public $categories;
-    public $category;
-    public $open = false;
-
-    protected $listeners = [
-        'deleteModal'
-    ];
-
-    public function mount()
+    public function remove(Category $category)
     {
-        $this->getCategories();
-    }
-
-    public function getCategories()
-    {
-        $this->categories = Category::all();
-    }
-
-    public function delete()
-    {
-        $this->category->delete();
+        $category->delete();
 
         return redirect()->route('categories.index');
     }
 
-    public function deleteModal(Category $category)
-    {
-        $this->category = $category;
-        $this->open = true;
-    }
 
     public function render()
     {
-        return view('livewire.categories.index')->layout('layouts.auth');
+        return view('livewire.categories.index', [
+            'categories' => Category::paginate(10),
+        ])->layout('layouts.auth');
     }
 }
 
