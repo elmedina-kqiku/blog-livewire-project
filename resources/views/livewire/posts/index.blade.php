@@ -1,5 +1,7 @@
 <div class="py-10">
     <div>
+        <input wire:model.debounce.750="q" type="search" placeholder="Search Posts..."
+               class=" lg:w-96 h-full rounded-full px-9 py-2 text-left text-sm text-gray-500 outline-none" >
         <table class="w-full">
             <thead class="text-xs font-normal">
             <tr>

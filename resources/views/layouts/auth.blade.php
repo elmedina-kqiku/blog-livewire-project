@@ -22,7 +22,7 @@
                 <div class="">
                     <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200">
                         <a aria-current="page" href="{{route('posts.index')}}"
-                            class="router-link-active router-link-exact-active">
+                           class="router-link-active router-link-exact-active">
                             <x-icons.blog class="h-9 mb-9"/>
                         </a>
                         <div>
@@ -33,27 +33,28 @@
                     <ul class="pt-9 flex flex-col h-full">
                         <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider">
                             <x-icons.dashboard class="w-6 h-6"/>
-                            <x-nav-link :href="route('home.index')" :active="request()->routeIs('home.*')" >Home</x-nav-link>
+                            <x-nav-link :href="route('home.index')" :active="request()->routeIs('home.*')">Home
+                            </x-nav-link>
                         </li>
                         <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider mt-6">
                             <x-icons.categories class="w-6 h-6"/>
-                            <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')" >Categories</x-nav-link>
+                            <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                                Categories
+                            </x-nav-link>
                         </li>
 
                         <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider mt-6">
                             <x-icons.post class="w-6 h-6"/>
-                            <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.*')">Posts</x-nav-link>
+                            <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.*')">Posts
+                            </x-nav-link>
                         </li>
                     </ul>
                 </div>
                 <div class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider mt-auto">
                     <x-icons.logout/>
-{{--                    <button>Log Out</button>--}}
-
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-
-                        <x-responsive-nav-link :href="route('logout')"
+                        <x-responsive-nav-link href="#"
                                                onclick="event.preventDefault();
                                         this.closest('form').submit();">
                             {{ __('Log Out') }}
@@ -66,24 +67,10 @@
 
         <div class="w-full bg-neutral-100 pt-6 px-12 pb-12 overflow-auto h-screen">
             <div class="flex flex-row justify-between">
-                <form action="">
-                    <label class="">
-                        <div class="relative">
-                            <div class="relative items-center">
-                                <div class="flex absolute inset-y-0 pl-3 items-center pointer-events-none">
-                                    <x-icons.search/>
-                                </div>
-                                <input type="search" placeholder="Search Posts..."
-                                       class=" lg:w-96 h-full rounded-full px-9 py-2 text-left text-sm text-gray-500 outline-none">
-                            </div>
-                        </div>
-                    </label>
-                </form>
-
+                <livewire:search.search :post="$post"/>
                 <div class="flex flex-col space-y-2 md:flex-row md:space-x-9 md:space-y-0">
                     <div class="bg-white rounded-full p-1">
-                        <!-- width po rritet kur bohet zoom-->
-                    <x-icons.notification class="h-full w-full"/>
+                        <x-icons.notification class="h-full w-full"/>
                     </div>
                     <a href="{{route('posts.create')}}"
                        class="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-auto px-6 py-2 text-center text-sm font-normal tracking-wider">CREATE

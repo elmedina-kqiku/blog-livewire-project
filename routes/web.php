@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-Route::get('/', function () {
-    return view('livewire.dashboard.dashboard');
-});
+Route::get('/', \App\Http\Livewire\Dashboard\Dashboard::class)->name('dashboard');
 
 Route::get('/home', function () {
     return view('home');

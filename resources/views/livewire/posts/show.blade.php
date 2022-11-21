@@ -45,7 +45,7 @@
         </div>
 
         <p class="border-b border-gray-200 pb-4 text-sm font-normal text-black tracking-wider ">
-            Comments
+            Comments ({{ $post->comments()->count() }})
             {{--                        ({{ comments.length}})--}}
         </p>
 
@@ -71,10 +71,11 @@
             </div>
 
         @endforeach
-        {{ $comments->links() }}
+        <div>
+            {{ $comments->links() }}
+        </div>
 
         <livewire:comments.create :post="$post"/>
-
 
     </div>
     <div class="col-span-1 lg:col-span-1  flex flex-col space-y-14">

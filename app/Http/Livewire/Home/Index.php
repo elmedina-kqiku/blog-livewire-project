@@ -20,7 +20,7 @@ class Index extends Component
 
     public function getPosts()
     {
-        return Post::paginate(8);
+        return auth()->user()->posts()->paginate(8);
     }
 
     public function getCategories()
