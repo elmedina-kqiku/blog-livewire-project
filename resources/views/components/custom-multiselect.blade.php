@@ -81,10 +81,10 @@
                                                class="ml-auto"/>
                     </span>
                     @if($showIndex)
-                        <div x-show="selected.includes(${item.id})"
+                        <div x-show="selected.includes(`${item.id}`)"
                              x-cloak
                              class="float-right bg-gray-200 text-gray-500 border border-gray-300 w-5 h-5 flex items-center justify-center text-xs rounded-full">
-                            <span x-text="selected.indexOf(${item.id}) + 1"></span>
+                            <span x-text="selected.indexOf(`${item.id}`) + 1"></span>
                         </div>
                     @endif
                 </label>
@@ -101,7 +101,7 @@
                 <span x-text="selected.length"></span> items selected
                 <span class="float-right">
                         <button
-                            @click.prevent="selected = items.map(item => {return ${item.id}})"
+                            @click.prevent="selected = items.map(item => {return `${item.id}`})"
                             type="button"
                             class="mr-3 rounded px-px text-blue-600">
                             Select All

@@ -12,14 +12,14 @@ class PostComponent extends Component
     use WithCustomFileUploads;
     use FileManager;
 
+    public $post;
     public $form = [
         'title' => null,
         'body' => null,
         'categories' => []
     ];
     public $image;
-    public $categories = [
-    ];
+    public $categories = [];
 
     protected $rules = [
         'form.title' => 'required|string|min:3|max:255',

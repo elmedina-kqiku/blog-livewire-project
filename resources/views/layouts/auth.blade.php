@@ -14,14 +14,14 @@
     <livewire:styles/>
     <livewire:scripts/>
 </head>
-<body class="font-sans antialiased bg-red-500">
-<div class="bg-red-500">
+<body class="font-sans antialiased">
+<div class="bg-white-500">
     <div class="flex flex-row overflow-hidden">
         <div class="hidden md:block">
             <div class="w-64 flex-shrink-0 h-screen bg-white flex flex-col justify-between bg-white p-10">
                 <div class="">
-                    <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200"><a
-                            aria-current="page" href="/profile/categories"
+                    <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200">
+                        <a aria-current="page" href="{{route('posts.index')}}"
                             class="router-link-active router-link-exact-active">
                             <x-icons.blog class="h-9 mb-9"/>
                         </a>
@@ -33,7 +33,7 @@
                     <ul class="pt-9 flex flex-col h-full">
                         <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider">
                             <x-icons.dashboard class="w-6 h-6"/>
-                            <x-nav-link href="">Dashboard</x-nav-link>
+                            <x-nav-link :href="route('home.index')" :active="request()->routeIs('home.*')" >Home</x-nav-link>
                         </li>
                         <li class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider mt-6">
                             <x-icons.categories class="w-6 h-6"/>
@@ -46,9 +46,20 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-auto">
+                <div class="flex flex-row items-center space-x-6 text-xs font-normal tracking-wider mt-auto">
                     <x-icons.logout/>
-                    <button>Log Out</button>
+{{--                    <button>Log Out</button>--}}
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <x-responsive-nav-link :href="route('logout')"
+                                               onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -82,7 +93,9 @@
 
             </div>
 
-            {{ $slot }}
+            <div>
+                {{ $slot }}
+            </div>
 
         </div>
     </div>

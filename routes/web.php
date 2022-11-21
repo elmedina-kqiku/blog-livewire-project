@@ -8,14 +8,15 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('livewire.dashboard.dashboard');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', function () {
+    return view('home');
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/home', \App\Http\Livewire\Home\Index::class)->name('home.index');
     Route::get('/categories', Index::class)->name('categories.index');
     Route::get('/categories/create', Create::class)->name('categories.create');
     Route::get('/categories/{category}/edit', Edit::class)->name('categories.edit');

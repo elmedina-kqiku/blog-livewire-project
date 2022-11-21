@@ -1,8 +1,8 @@
 <div class="pt-10">
-    <p class="text-base text-black mt-5">{{isset($post) ? 'CREATE POST' : 'EDIT POST'}}</p>
+    <p class="text-base text-black mt-5">{{isset($post) ? 'EDIT POST' : 'CREATE POST'}}</p>
     <form enctype="multipart/form-data"
           wire:submit.prevent="submit" class="flex flex-col ">
-        <div class="flex flex-row items-center justify-between mt-6">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mt-6">
             <div class=" w-60 h-60  grid place-content-center">
                 <div class="mt-1 flex items-center">
                     <div class="bg-gray-100 h-20 overflow-hidden rounded-md w-32">
@@ -30,7 +30,9 @@
             <div class="flex flex-col w-2/3">
                 <div>
                     <label for="">Title</label>
-                    <input wire:model="form.title" class="mt-2 py-2 px-4 w-full rounded rounded-lg"/>
+                    <input wire:model="form.title" class="mt-2 py-2 px-4 w-full rounded rounded-lg
+                    border border-gray-300 focus:outline-none
+                        focus:border-indigo-200 focus:ring-indigo-200 focus:ring-1"/>
                 </div>
                 <div class="w-full mt-6">
                     <p class="mb-2">Categories</p>
@@ -50,7 +52,10 @@
         </div>
         <div class="mt-6">
             <label for="">Content</label>
-            <textarea wire:model="form.body" rows="4" class="mt-2 w-full rounded rounded-lg"></textarea>
+            <textarea wire:model="form.body" rows="4" class="mt-2 w-full rounded rounded-md
+           focus:outline-none focus:border-indigo-200 focus:ring-indigo-200 focus:ring-1
+           border border-gray-300
+            "></textarea>
         </div>
         <div class="flex justify-end">
             <button type="submit" class=" p-2 mt-6 bg-blue-500 w-20 rounded rounded-full shadow text-white">Save
