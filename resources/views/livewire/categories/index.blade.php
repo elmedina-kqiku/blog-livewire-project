@@ -5,6 +5,7 @@
             CREATE
         </a>
     </div>
+
     <table class="w-full bg-white border-1 border-gray-300 " id="dataTable">
         <thead>
         <tr class="border-b">
@@ -27,7 +28,7 @@
                 </td>
                 <td class="p-3 text-sm text-white">
                     <button class="bg-red-200 rounded rounded-md py-1 px-2"
-                            wire:click.prevent="$emit('deleteModel', '{{ $category->id }}')">
+                            wire:click.prevent="remove({{ $category->id }})">
                         Delete
                     </button>
                 </td>
