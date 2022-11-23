@@ -5,7 +5,13 @@
             CREATE
         </a>
     </div>
-
+    <div>
+        @if (session()->has('message'))
+            <div class=" bg-teal-200 px-3 py-2 text-base font-medium">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
     <table class="w-full bg-white border-1 border-gray-300 " id="dataTable">
         <thead>
         <tr class="border-b">

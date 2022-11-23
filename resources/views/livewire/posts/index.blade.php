@@ -1,12 +1,17 @@
 <div class="py-10">
     <div>
-        <input wire:model.debounce.750="q" type="search" placeholder="Search Posts..."
-               class=" lg:w-96 h-full rounded-full px-9 py-2 text-left text-sm text-gray-500 outline-none" >
+        <div>
+            @if (session()->has('message'))
+                <div class=" bg-teal-200 px-3 py-2 text-base font-medium">
+                    {{ session('message') }}
+                </div>
+            @endif
+        </div>
         <table class="w-full">
             <thead class="text-xs font-normal">
             <tr>
                 <th class="p-3 text-left">TITLE</th>
-                {{--            <th class="p-3 text-left">COMMENTS</th>--}}
+                <th class="p-3 text-left">COMMENTS</th>
                 <th class="p-3 text-left">CATEGORY</th>
                 <th class="p-3 text-left">POSTED AT</th>
                 <th class="p-3 text-left">LAST UPDATED</th>
@@ -30,7 +35,7 @@
                             <p class="ml-2">{{$post->title}}</p>
                         </a>
                     </td>
-                    {{--            <td class="p-3 text-xs text-gray-500">{{$post->comments}}</td>--}}
+                                <td class="p-3 text-xs text-gray-500">{{$post->comments()->count()}}</td>
                     <td class="p-3 text-xs text-gray-500">
                         @foreach($post->categories as $category)
                             {{$category->name}}
@@ -40,24 +45,24 @@
                     <td class="p-3 text-xs text-gray-500">{{$post->updated_at->diffForHumans()}}</td>
                     <td>
                         @if(auth()->user()->can('update', $post))
-                        <x-dropdown>
-                            <x:slot name="trigger">
-                                <button type="button" class="focus:outline-none">
-                                    <x:icons.threedots_vertical class="w-5 h-5"/>
-                                </button>
-                            </x:slot>
-                            <x:slot name="content">
-                                <x:dropdown-link href="{{route('posts.edit', $post)}}" class="text-left">
-                                    Edit
-                                </x:dropdown-link>
+                            <x-dropdown>
+                                <x:slot name="trigger">
+                                    <button type="button" class="focus:outline-none">
+                                        <x:icons.threedots_vertical class="w-5 h-5"/>
+                                    </button>
+                                </x:slot>
+                                <x:slot name="content">
+                                    <x:dropdown-link href="{{route('posts.edit', $post)}}" class="text-left">
+                                        Edit
+                                    </x:dropdown-link>
 
-                                <x:dropdown-link
-                                    wire:click.prevent="remove({{ $post->id }})"
-                                    class="text-left">
-                                    Delete
-                                </x:dropdown-link>
-                            </x:slot>
-                        </x-dropdown>
+                                    <x:dropdown-link
+                                        wire:click.prevent="remove({{ $post->id }})"
+                                        class="text-left">
+                                        Delete
+                                    </x:dropdown-link>
+                                </x:slot>
+                            </x-dropdown>
                         @endif
                     </td>
                 </tr>
