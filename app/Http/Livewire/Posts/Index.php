@@ -21,6 +21,9 @@ class Index extends Component
     {
         $post->delete();
 
+        session()->flash('message', 'Post successfully deleted!');
+
         return redirect()->route('posts.index');
     }
 }
+
