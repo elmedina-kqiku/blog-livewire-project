@@ -13,6 +13,8 @@ class Create extends CategoryComponent
 
         $category = Category::create($data);
 
+        session()->flash('message', 'Category successfully updated.');
+
         return redirect()->route('categories.index');
 
     }

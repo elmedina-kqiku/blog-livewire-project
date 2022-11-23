@@ -29,6 +29,8 @@ class Create extends PostComponent
 
         $post->categories()->sync($this->form['categories']);
 
+        session()->flash('message', 'Post successfully updated.');
+
         return redirect()->route('posts.index');
     }
 

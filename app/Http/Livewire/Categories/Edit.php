@@ -22,6 +22,8 @@ class Edit extends CategoryComponent
         // WE GET $this->category, because we have $category in mount
         $this->category->update($data);
 
+        session()->flash('message', 'Category successfully updated.');
+
         return redirect()->route('categories.index');
     }
 

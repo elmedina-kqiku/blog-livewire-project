@@ -30,9 +30,9 @@ class Edit extends PostComponent
 
         $this->post->update($data);
 
-
-
         $this->post->categories()->sync($this->form['categories']);
+
+        session()->flash('message', 'Post successfully updated.');
 
         return redirect()->route('posts.index');
     }
