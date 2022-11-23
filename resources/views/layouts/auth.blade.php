@@ -67,7 +67,9 @@
 
         <div class="w-full bg-neutral-100 pt-6 px-12 pb-12 overflow-auto h-screen">
             <div class="flex flex-row justify-between">
-                <livewire:search.search :post="$post"/>
+
+                <livewire:search.search/>
+
                 <div class="flex flex-col space-y-2 md:flex-row md:space-x-9 md:space-y-0">
                     <div class="bg-white rounded-full p-1">
                         <x-icons.notification class="h-full w-full"/>

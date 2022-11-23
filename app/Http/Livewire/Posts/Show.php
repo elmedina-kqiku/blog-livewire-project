@@ -13,11 +13,20 @@ class Show extends Component
 
     public $post;
     public $categories;
+    public $suggestions;
+
+    public ?Post $nextPost = null;
+
+    public ?Post $prevPost = null;
 
     public function mount(Post $post)
     {
         $this->post = $post;
         $this->getCategories();
+        $this->mountSuggestions();
+
+        $this->nextPost = Post::query()->where('id', '>', $post->id)->first();
+        $this->prevPost = Post::query()->where('id', '<', $post->id)->first();
     }
 
     public function render()
@@ -30,4 +39,11 @@ class Show extends Component
         $this->categories = Category::all();
     }
 
+    protected function mountSuggestions()
+    {
+        $this->suggestions = Post::query()
+            ->where('id', '<>', $this->post->id)
+            ->take(4)
+            ->get();
+    }
 }
