@@ -13,7 +13,6 @@
                     </div>
                 @endif
             </div>
-
             <p class="text-black font-bold uppercase">
                 {{$post->title}}
             </p>
@@ -40,15 +39,17 @@
 
 
         <div class="flex justify-between tracking-wider ">
-            <button>PREVIOUS</button>
-            <button>Next</button>
+            @if($prevPost)
+                <a href="{{ route('posts.show', $prevPost) }}">PREVIOUS</a>
+            @endif
+            @if($nextPost)
+                <a href="{{ route('posts.show', $nextPost) }}">Next</a>
+            @endif
         </div>
 
         <p class="border-b border-gray-200 pb-4 text-sm font-normal text-black tracking-wider ">
             Comments ({{ $post->comments()->count() }})
-            {{--                        ({{ comments.length}})--}}
         </p>
-
         @foreach($comments as $comment)
             <div class="flex flex-row space-x-5 justify-between ml-3 pt-8">
                 <x-icons.profileicon class="mb-12 h-14 w-14"/>
@@ -74,14 +75,32 @@
         <div>
             {{ $comments->links() }}
         </div>
-
         <livewire:comments.create :post="$post"/>
-
     </div>
     <div class="col-span-1 lg:col-span-1  flex flex-col space-y-14">
         <div class="flex flex-col space-y-3">
             <p class="uppercase text-sm font-normal ">More like this</p>
-            <SugesstionsVue v-for="post in posts" :key="post.id" :post="post"/>
+            @foreach($suggestions as $suggestion)
+                <a href="{{ route('posts.show', $suggestion->id) }}">
+                    <div class="flex flex-row items-center space-x-6">
+                        <div>
+                            @if($suggestion->image)
+                                <img src="{{asset($suggestion->image_url)}}" class="object-cover w-16 h-16"/>
+                            @else
+                                <div class="bg-gray-300 w-16 h-16 ">
+                                </div>
+                            @endif
+                        </div>
+                        <div class="flex flex-col justify-between space-y-2 text-xs">
+                            <p class="font-normal  tracking-wider uppercase"> {{$suggestion->title}} </p>
+                            <div class="flex flex-row ">
+                                <x-icons.profileicon/>
+                                <p class="pl-2">By <a class="text-blue-400 "> {{$suggestion->user->name}} </a></p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
         </div>
         <div class="flex flex-col space-y-3">
             <p class="uppercase text-sm font-normal tracking-wider ">Categories</p>
